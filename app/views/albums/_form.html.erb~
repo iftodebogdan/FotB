@@ -1,3 +1,4 @@
+<%= (Band.find(params[:band_id])).id %>
 <%= form_for(@album) do |f| %>
   <% if @album.errors.any? %>
     <div id="error_explanation">
@@ -16,7 +17,7 @@
     <%= f.text_field :album_name %>
   </div>
   <div class="field">
-    <%= f.hidden_field :band_id, :value => (Band.find(params[:band_id])).id %>
+    <%= f.hidden_field :band_id, :value => Band.find(params[:band_id]) %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -16,7 +16,7 @@
 <% end %>
 </tbody>  
 </table>
-<%= link_to "New topic", {:controller => "topics", :action => "new", :band_id => @album.band.id, :album_id => @album.id }, :class => "btn btn-mini" %>
+<%= link_to "New topic", {:controller => "topics", :action => "new", :band_id => (@album.band).id, :album_id => @album.id }, :class => "btn btn-mini" %>
 <%= link_to "Back", "/bands/#{@album.band.id}", :class => "btn btn-mini" %>
 
 <br/><br/><br/><br/><br/>
