@@ -1,4 +1,12 @@
 Forum::Application.routes.draw do
+  resources :posts
+
+  resources :topics
+
+  resources :albums
+
+  resources :bands
+
   get "page/home"
 
   devise_for :users
