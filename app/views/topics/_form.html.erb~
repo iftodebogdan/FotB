@@ -1,3 +1,4 @@
+<%= (Band.find(params[:band_id])).id %>
 <%= form_for(@topic) do |f| %>
   <% if @topic.errors.any? %>
     <div id="error_explanation">

@@ -10,7 +10,7 @@
 <tbody>
 <% @topic.posts.each do |post| %>
   <tr>
-    <td><%= post.user.email %></td>
+    <td><%= link_to post.user.email, "/posts/#{post.id}" %></td>
     <td><%= post.post_content %></td>
   </tr>
 <% end %>
