@@ -5,9 +5,11 @@ one:
   user_id: 1
   band_id: 1
   album_id: 1
+  topic_id: 1
 
 two:
   post_content: MyString
   user_id: 1
   band_id: 1
   album_id: 1
+  topic_id: 1

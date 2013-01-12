@@ -4,5 +4,4 @@ class Topic < ActiveRecord::Base
   has_many :posts
 
   belongs_to :album
-  belongs_to :band
 end

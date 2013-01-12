@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>FotB - Forum of the Bands</title>
+  <title>Forum of the Bands</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -10,7 +10,7 @@
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="navbar-inner">
         <div class="container">
-          <%= link_to "FotB - Forum of the Bands", '/', :id => "logo" %>
+          <%= link_to "Forum of the Bands", '/', :id => "logo" %>
           <nav>
             <ul class="nav pull-right">
               <li><%= link_to "#{current_user.email}", '/users/edit' if user_signed_in? %></li>

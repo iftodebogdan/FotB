@@ -1,3 +1,8 @@
+<% if user_signed_in? %>
+  <script type="text/javascript">
+    window.location.href="/bands"  // put your correct path in a string here
+  </script>
+<% end %>
 <div class="center hero-unit">
   <h1>Welcome to FotB!</h1>
 
@@ -6,6 +11,6 @@
   </h2>
 
   <%= link_to "Register", '/users/sign_up', :class => "btn btn-large btn-primary" %>
-  <%= link_to "Sign in", '/users/sign_up', :class => "btn btn-large btn-primary" %>
+  <%= link_to "Sign in", '/users/sign_in', :class => "btn btn-large btn-primary" %>
 </div>
 

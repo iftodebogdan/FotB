@@ -19,7 +19,6 @@
 </tbody>  
 </table>
 <%= link_to "New album", '/albums/new', :class => "btn btn-mini" %>
-<%= link_to "Back to Bands", '/bands/', :class => "btn btn-mini" %>
 
 <br/><br/><br/><br/><br/>
 
