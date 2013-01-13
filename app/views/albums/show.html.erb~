@@ -3,8 +3,13 @@
 <% provide(:album_path, "/albums/#{@album.id}") %>
 <% provide(:album_name, @album.album_name) %>
 
-<p id="notice"><%= notice %></p>
+<script type="text/javascript">
+setInterval( function() {
+  $("#refreshable").load(location.href+" #refreshable>*", "");
+}, 5000);
+</script>
 
+<div id="refreshable">
 <table class="table table-striped">  
 <thead>  
   <tr>  
@@ -23,6 +28,8 @@
 <% end %>
 </tbody>  
 </table>
+</div>
+
 <%= link_to "New topic", {:controller => "topics", :action => "new", :band_id => @album.band.id, :album_id => @album.id }, :class => "btn btn-mini" %>
 <%= link_to "Back", "/bands/#{@album.band.id}", :class => "btn btn-mini" %>
 

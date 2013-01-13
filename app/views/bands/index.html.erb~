@@ -1,5 +1,4 @@
-<p id="notice"><%= notice %></p>
-
+<% if user_signed_in? %>
 <table class="table table-striped">  
 <thead>  
   <tr>  
@@ -23,6 +22,19 @@
 </tbody>  
 </table>
 <%= link_to "New band", '/bands/new', :class => "btn btn-mini" %>
+
+<% else %>
+<div class="center hero-unit">
+  <h1>Welcome to FotB!</h1>
+
+  <h2>
+    Register or sign in below.
+  </h2>
+
+  <%= link_to "Register", '/users/sign_up', :class => "btn btn-large btn-primary" %>
+  <%= link_to "Sign in", '/users/sign_in', :class => "btn btn-large btn-primary" %>
+</div>
+<% end %>
 
 <% if false %>
 <br/><br/><br/><br/><br/>

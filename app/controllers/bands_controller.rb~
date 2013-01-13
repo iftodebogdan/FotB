@@ -1,4 +1,7 @@
 class BandsController < ApplicationController
+
+  #before_filter :authenticate_user!
+
   # GET /bands
   # GET /bands.json
   def index
@@ -60,7 +63,7 @@ class BandsController < ApplicationController
 
     respond_to do |format|
       if @band.update_attributes(params[:band])
-        format.html { redirect_to @band, :notice => 'Band was successfully updated.' }
+        format.html { redirect_to bands_url, :notice => 'Band was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }

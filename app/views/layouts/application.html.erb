@@ -7,6 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
   <body>
+    <script type="text/javascript">
+      setInterval( function() {$("#refreshable").load(location.href+" #refreshable>*", "");}, 5000);
+    </script>
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="navbar-inner">
         <div class="container">
@@ -25,8 +28,6 @@
       </div>
     </header>
     <div class="container">
-      <p id="notice"><%= flash[:alert] %></p>
-      <p id="notice"><%= flash[:notice] %></p>
       <ul class="nav nav-pills" style="font-size:150%">
         <li class="disabled"><a>></a></li>
         <% if !yield(:band_path).empty? %>
@@ -50,7 +51,15 @@
         </li>
         <% end %>
       </ul>
-      <%= yield %>
+      <p id="notice"><%= flash[:notice] %>&nbsp;<%= flash[:alert] %></p>
+      
+      <% if params[:action] == "show" or (params[:action] == "index" and params[:controller] == "bands") %>
+        <div id="refreshable">
+          <%= yield %>
+        <div/>
+      <% else %>
+        <%= yield %>
+      <% end %>
     </div>
     <br/><br/>
   </body>

@@ -5,13 +5,6 @@
 <% provide(:topic_path, "/topics/#{@topic.id}") %>
 <% provide(:topic_name, @topic.topic_name) %>
 
-<script type="text/javascript">
-setInterval( function() {
-  $("#refreshable").load(location.href+" #refreshable>*", "");
-}, 5000);
-</script>
-
-<div id="refreshable">
 <table class="table table-bordered">
 <tbody>
 <% @topic.posts.each do |post| %>
@@ -26,6 +19,7 @@ setInterval( function() {
 </tbody>  
 </table>
 </div>
+
 <%= link_to "New post", {:controller => "posts", :action => "new", :band_id => @topic.band.id, :album_id => @topic.album.id, :topic_id => @topic.id }, :class => "btn btn-mini" %>
 <%= link_to "Back", "/albums/#{@topic.album.id}", :class => "btn btn-mini" %>
 
