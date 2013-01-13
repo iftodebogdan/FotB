@@ -1,3 +1,7 @@
+<script type="text/javascript">
+  window.location = '/'
+</script>
+
 <div class="center hero-unit">
   <h1>Welcome to FotB!</h1>
 

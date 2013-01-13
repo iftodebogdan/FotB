@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Forum of the Bands</title>
+  <title>
+    Forum of the Bands
+    <% if !yield(:band_path).empty? %>
+      <%= ' > ' + yield(:band_name) %>
+    <% end %>
+    <% if !yield(:album_path).empty? %>
+      <%= ' > ' + yield(:album_name) %>
+    <% end %>
+    <% if !yield(:topic_path).empty? %>
+      <%= ' > ' + yield(:topic_name) %>
+    <% end %>
+  </title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>

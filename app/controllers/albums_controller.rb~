@@ -1,4 +1,9 @@
 class AlbumsController < ApplicationController
+
+  before_filter do
+    current_user.exists? rescue redirect_to "/page/home"
+  end
+
   # GET /albums
   # GET /albums.json
   def index

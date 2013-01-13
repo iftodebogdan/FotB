@@ -8,4 +8,4 @@ en:
       default: "%d %b %Y"
   time:
     formats:
-      default: "%A, %d %b %Y %H:%M:%S %Z"
+      default: "%A, %d %b %Y        %H:%M:%S %Z"

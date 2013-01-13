@@ -13,7 +13,9 @@
 
   <div class="field">
     <%= f.label :post_content %><br />
-    <%= f.text_box :post_content %>
+    <textarea rows="8" cols="100" style="width:auto" id="post_post_content" name="post[post_content]" type="text">
+    <%= @post.post_content %>
+    </textarea> 
   </div>
   <div class="field">
     <%= f.hidden_field :user_id, :value => current_user.id %>
