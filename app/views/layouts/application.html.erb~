@@ -4,13 +4,13 @@
   <title>
     Forum of the Bands
     <% if !yield(:band_path).empty? %>
-      <%= " > " + yield(:band_name) %>
+      <%= ' > ' + yield(:band_name) %>
     <% end %>
     <% if !yield(:album_path).empty? %>
-      <%= yield(:album_name) %>
+      <%= ' > ' + yield(:album_name) %>
     <% end %>
     <% if !yield(:topic_path).empty? %>
-      <%= yield(:topic_name) %>
+      <%= ' > ' + yield(:topic_name) %>
     <% end %>
   </title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
@@ -27,7 +27,7 @@
           <%= link_to "Forum of the Bands", '/', :id => "logo" %>
           <nav>
             <ul class="nav pull-right">
-              <li><%= link_to "#{current_user.email}", '/users/edit' if user_signed_in? %></li>
+              <li><span>Welcome, <%= link_to current_user.username, '/users/edit' if user_signed_in? %></span></li>
               <li><%= if !user_signed_in?
                         link_to "Sign in", '/users/sign_in'
                       else
