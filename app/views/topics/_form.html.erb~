@@ -1,4 +1,3 @@
-<%= (Band.find(params[:band_id])).id %>
 <%= form_for(@topic) do |f| %>
   <% if @topic.errors.any? %>
     <div id="error_explanation">
@@ -13,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :topic_name %><br />
+    <%= f.label "Topic title" %><br />
     <%= f.text_field :topic_name %>
   </div>
   <div class="field">

@@ -1,3 +1,8 @@
+<% provide(:band_path, "/bands/#{(Band.find(params[:band_id])).id}") %>
+<% provide(:band_name, (Band.find(params[:band_id])).band_name) %>
+<% provide(:album_path, "/albums/#{(Album.find(params[:album_id])).id}") %>
+<% provide(:album_name, (Album.find(params[:album_id])).album_name) %>
+
 <%= render 'form' %>
 
 <%= link_to "Back", "/albums/#{(Album.find(params[:album_id])).id}", :class => "btn btn-mini" %>

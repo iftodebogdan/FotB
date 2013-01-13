@@ -1,6 +1,8 @@
-<h1>Editing topic</h1>
+<% provide(:band_path, "/bands/#{(Band.find(params[:band_id])).id}") %>
+<% provide(:band_name, (Band.find(params[:band_id])).band_name) %>
+<% provide(:album_path, "/albums/#{(Album.find(params[:album_id])).id}") %>
+<% provide(:album_name, (Album.find(params[:album_id])).album_name) %>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @topic %> |
-<%= link_to 'Back', topics_path %>
+<%= link_to "Back", "/albums/#{@topic.album.id}", :class => "btn btn-mini" %>

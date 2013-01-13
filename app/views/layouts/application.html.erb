@@ -25,7 +25,33 @@
       </div>
     </header>
     <div class="container">
+      <p id="notice"><%= flash[:alert] %></p>
+      <p id="notice"><%= flash[:notice] %></p>
+      <ul class="nav nav-pills" style="font-size:150%">
+        <li class="disabled"><a>></a></li>
+        <% if !yield(:band_path).empty? %>
+        <li>
+          <a href=<%= yield(:band_path) %>>
+            <%= yield(:band_name) %></a>
+        </li>
+        <% end %>
+        <% if !yield(:album_path).empty? %>
+        <li class="disabled"><a>></a></li>
+        <li>
+          <a href=<%= yield(:album_path) %>>
+            <%= yield(:album_name) %></a>
+        </li>
+        <% end %>
+        <% if !yield(:topic_path).empty? %>
+        <li class="disabled"><a>></a></li>
+        <li>
+          <a href=<%= yield(:topic_path) %>>
+            <%= yield(:topic_name) %></a>
+        </li>
+        <% end %>
+      </ul>
       <%= yield %>
     </div>
+    <br/><br/>
   </body>
 </html>

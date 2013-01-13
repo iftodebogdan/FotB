@@ -1,24 +1,35 @@
-<p id="notice"><%= notice %></p>
+<% provide(:band_path, "/bands/#{@topic.band.id}") %>
+<% provide(:band_name, @topic.band.band_name) %>
+<% provide(:album_path, "/albums/#{@topic.album.id}") %>
+<% provide(:album_name, @topic.album.album_name) %>
+<% provide(:topic_path, "/topics/#{@topic.id}") %>
+<% provide(:topic_name, @topic.topic_name) %>
 
-<table class="table table-striped">  
-<thead>  
-  <tr>  
-    <th>Username</th>
-    <th>Post Content</th>  
-  </tr>  
-</thead>  
+<script type="text/javascript">
+setInterval( function() {
+  $("#refreshable").load(location.href+" #refreshable>*", "");
+}, 5000);
+</script>
+
+<div id="refreshable">
+<table class="table table-bordered">
 <tbody>
 <% @topic.posts.each do |post| %>
   <tr>
-    <td><%= link_to post.user.email, "/posts/#{post.id}" %></td>
-    <td><%= post.post_content %></td>
+    <td bgcolor="lightgray" rowspan="2" style="width: 1px; white-space: nowrap;"><h5><%= post.user.email %></h5><h6>Registered: <%= post.user.created_at.advance(:hours => 2).to_date %><br/>Posts: <%= post.user.posts.count %></h6><br/><%= post.user.updated_at %></td>
+    <td bgcolor="lightblue" colspan="2"><%= post.created_at.advance(:hours => 2).to_s.chomp(' UTC') %></td>
+  <tr>
+    <td style="height: 100px; white-space: nowrap;"><%= post.post_content %></td>
+    <td bgcolor="lightgray" style="width: 1px; white-space: nowrap;"><%= link_to 'Edit', "#{edit_post_path(post)}?band_id=#{@topic.band.id}&album_id=#{@topic.album.id}&topic_id=#{@topic.id}", :class => "btn btn-mini" %>&nbsp;<%= link_to 'Delete', post, :class => "btn btn-mini", :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </tbody>  
 </table>
+</div>
 <%= link_to "New post", {:controller => "posts", :action => "new", :band_id => @topic.band.id, :album_id => @topic.album.id, :topic_id => @topic.id }, :class => "btn btn-mini" %>
 <%= link_to "Back", "/albums/#{@topic.album.id}", :class => "btn btn-mini" %>
 
+<% if false %>
 <br/><br/><br/><br/><br/>
 
 <p>
@@ -39,3 +50,4 @@
 
 <%= link_to 'Edit', edit_topic_path(@topic) %> |
 <%= link_to 'Back', topics_path %>
+<% end %>

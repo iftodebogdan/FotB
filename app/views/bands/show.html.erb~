@@ -1,4 +1,6 @@
-<%= @band.id %>
+<% provide(:band_path, "/bands/#{@band.id}") %>
+<% provide(:band_name, @band.band_name) %>
+
 <p id="notice"><%= notice %></p>
 
 <table class="table table-striped">  
@@ -6,7 +8,8 @@
   <tr>  
     <th>Album name</th> 
     <th># of Topics</th>  
-    <th># of Posts</th>  
+    <th># of Posts</th>
+    <th></th> 
   </tr>  
 </thead>  
 <tbody>
@@ -15,6 +18,7 @@
     <td><%= link_to album.album_name, "/albums/#{album.id}" %></td>
     <td><%= album.topics.count %></td>
     <td><%= album.posts.count %></td>
+    <td><%= link_to 'Edit', "#{edit_album_path(album)}?band_id=#{@band.id}", :class => "btn btn-mini" %>&nbsp;<%= link_to 'Delete', album, :class => "btn btn-mini", :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </tbody>  
@@ -22,6 +26,7 @@
 <%= link_to "New album", {:controller => "albums", :action => "new", :band_id => @band.id }, :class => "btn btn-mini" %>
 <%= link_to "Back", '/bands/', :class => "btn btn-mini" %>
 
+<% if false %>
 <br/><br/><br/><br/><br/>
 
 <p>
@@ -32,3 +37,4 @@
 
 <%= link_to 'Edit', edit_band_path(@band) %> |
 <%= link_to 'Back', bands_path %>
+<% end %>

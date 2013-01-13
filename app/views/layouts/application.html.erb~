@@ -10,7 +10,7 @@
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="navbar-inner">
         <div class="container">
-          <%= link_to "FotB - Forum of the Bands", '/', :id => "logo" %>
+          <%= link_to "Forum of the Bands", '/', :id => "logo" %>
           <nav>
             <ul class="nav pull-right">
               <li><%= link_to "#{current_user.email}", '/users/edit' if user_signed_in? %></li>
@@ -25,6 +25,31 @@
       </div>
     </header>
     <div class="container">
+      <p id="notice"><%= flash[:alert] %></p>
+      <p id="notice"><%= flash[:notice] %></p>
+      <ul class="nav nav-pills" style="font-size:150%">
+        <li class="disabled"><a>></a></li>
+        <% if !yield(:band_path).empty? %>
+        <li>
+          <a href=<%= yield(:band_path) %>>
+            <%= yield(:band_name) %></a>
+        </li>
+        <% end %>
+        <% if !yield(:album_path).empty? %>
+        <li class="disabled"><a>></a></li>
+        <li>
+          <a href=<%= yield(:album_path) %>>
+            <%= yield(:album_name) %></a>
+        </li>
+        <% end %>
+        <% if !yield(:topic_path).empty? %>
+        <li class="disabled"><a>></a></li>
+        <li>
+          <a href=<%= yield(:topic_path) %>>
+            <%= yield(:topic_name) %></a>
+        </li>
+        <% end %>
+      </ul>
       <%= yield %>
     </div>
   </body>

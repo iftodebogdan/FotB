@@ -1,10 +1,13 @@
-<table class="table">  
+<p id="notice"><%= notice %></p>
+
+<table class="table table-striped">  
 <thead>  
   <tr>  
     <th>Band name</th>  
     <th># of Albums</th>  
     <th># of Topics</th>  
-    <th># of Posts</th>  
+    <th># of Posts</th> 
+    <th></th> 
   </tr>  
 </thead>  
 <tbody>
@@ -14,12 +17,14 @@
     <td><%= band.albums.count %></td>
     <td><%= band.topics.count %></td>
     <td><%= band.posts.count %></td>
+    <td><%= link_to 'Edit', edit_band_path(band), :class => "btn btn-mini" %>&nbsp;<%= link_to 'Delete', band, :class => "btn btn-mini", :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </tbody>  
 </table>
 <%= link_to "New band", '/bands/new', :class => "btn btn-mini" %>
 
+<% if false %>
 <br/><br/><br/><br/><br/>
 
 <table>
@@ -43,4 +48,4 @@
 <br />
 
 <%= link_to 'New Band', new_band_path %>
-
+<% end %>

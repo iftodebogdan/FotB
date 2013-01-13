@@ -1,5 +1,4 @@
 class BandsController < ApplicationController
-before_filter :authenticate_member!
   # GET /bands
   # GET /bands.json
   def index
