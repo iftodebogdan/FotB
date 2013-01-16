@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  name: MyString
+  location: MyString
+  email: false
+  website: MyString
+  msn: MyString
+  yahoo: MyString
+  skype: MyString
+  gtalk: MyString
+
+two:
+  user_id: 1
+  name: MyString
+  location: MyString
+  email: false
+  website: MyString
+  msn: MyString
+  yahoo: MyString
+  skype: MyString
+  gtalk: MyString

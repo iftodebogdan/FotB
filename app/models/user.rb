@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   attr_accessible :login
   # attr_accessible :title, :body
   has_many :posts, :dependent => :destroy
+  has_one :profile, :dependent => :destroy
+  after_create :create_profile
 
    
     def self.find_first_by_auth_conditions(warden_conditions)

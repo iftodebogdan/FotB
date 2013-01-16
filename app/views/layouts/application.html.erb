@@ -27,12 +27,24 @@
           <%= link_to "Forum of the Bands", '/', :id => "logo" %>
           <nav>
             <ul class="nav pull-right">
-              <li><%= link_to "Welcome, #{current_user.username}", '/users/edit' if user_signed_in? %></li>
-              <li><%= if !user_signed_in?
-                        link_to "Sign in", '/users/sign_in'
-                      else
-                        link_to 'Sign out', destroy_user_session_path, :method => :delete
-                      end %></li>
+              <li><% if !user_signed_in? %>
+                    <%= link_to "Sign in", '/users/sign_in' %>
+                  <% else %>
+                    <div class="btn-group">
+                      <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#">
+                        <%= "Welcome, #{current_user.username}" %>
+                        <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><a tabindex="-1" href="#">Private messages</a></li>
+                        <li><a tabindex="-1" href="/profiles/<%= current_user.id %>">View profile</a></li>
+                        <li><a tabindex="-1" href="/profiles/<%= current_user.id %>/edit">Edit profile</a></li>
+                        <li><a tabindex="-1" href="/users/edit">Account settings</a></li>
+                        <li class="divider"></li>
+                        <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+                      </ul>
+                    </div>
+                  <% end %></li>
             </ul>
           </nav>
         </div>
@@ -40,12 +52,12 @@
     </header>
     <div class="container">
       <ul class="nav nav-pills" style="font-size:150%">
-        <li class="disabled"><a>></a></li>
-        <% if !yield(:band_path).empty? %>
-        <li>
-          <a href=<%= yield(:band_path) %>>
-            <%= yield(:band_name) %></a>
-        </li>
+        <% if !yield(:band_path).empty? or params[:controller] == "bands" %>
+          <li class="disabled"><a>></a></li>
+          <li>
+            <a href=<%= yield(:band_path) %>>
+              <%= yield(:band_name) %></a>
+          </li>
         <% end %>
         <% if !yield(:album_path).empty? %>
         <li class="disabled"><a>></a></li>
@@ -64,7 +76,7 @@
       </ul>
       <p id="notice"><%= flash[:notice] %>&nbsp;<%= flash[:alert] %></p>
       
-      <% if params[:action] == "show" or (params[:action] == "index" and params[:controller] == "bands") %>
+      <% if (params[:action] == "show" and params[:controller] != "profiles") or (params[:action] == "index" and params[:controller] == "bands") %>
         <div id="refreshable">
           <%= yield %>
         <div/>

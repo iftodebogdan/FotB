@@ -1,0 +1,44 @@
+<table border="1" class="table table-bordered">
+  <tr>
+    <td bgcolor="lightgray" style="width: 200px; white-space: nowrap;"><h5><%= @profile.user.username %></h5></td>
+    <td>
+      <% if !@profile.name.empty? %>
+        Real name: <%= @profile.name %><br/>
+      <% end %>
+      <% if !@profile.location.empty? %>
+        Location: <%= @profile.location %><br/><br/>
+      <% end %>
+      Registered: <%= l @profile.user.created_at.localtime.to_date %><br/>
+      Posts: <%= @profile.user.posts.count %>
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="lightgray">
+      <span style="float:right"><h6>Contact information</h6></span>
+    </td>
+    <td>
+      <% if @profile.email %>
+        Email: <%= @profile.user.email %><br/>
+      <% end %>
+      <% if !@profile.website.empty? %>
+        Website: <%= link_to @profile.website, @profile.website %><br/>
+      <% end %>
+      <% if !@profile.website.empty? or @profile.email %>
+        <br/>
+      <% end %>
+      <% if !@profile.msn.empty? %>
+        MSN: <%= @profile.msn %><br/>
+      <% end %>
+      <% if !@profile.yahoo.empty? %>
+        Yahoo: <%= @profile.yahoo %><br/>
+      <% end %>
+      <% if !@profile.skype.empty? %>
+        Skype: <%= @profile.skype %><br/>
+      <% end %>
+      <% if !@profile.gtalk.empty? %>
+        Google Talk: <%= @profile.gtalk %>
+      <% end %>
+    </td>
+  </tr>
+</table>
+

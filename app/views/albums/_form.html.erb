@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :album_name %><br />
-    <%= f.text_field :album_name %>
+    <%= f.text_field :album_name, :autofocus => true %>
   </div>
   <div class="field">
     <%= f.hidden_field :band_id, :value => (Band.find(params[:band_id])).id %>
