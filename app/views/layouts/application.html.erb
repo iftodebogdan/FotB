@@ -20,6 +20,7 @@
   <body>
     <script type="text/javascript">
       setInterval( function() {$("#refreshable").load(location.href+" #refreshable>*", "");}, 5000);
+      setInterval( function() {$("#pmrefreshable").load(location.href+" #pmrefreshable>*", "");}, 5000);
     </script>
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="navbar-inner">
@@ -32,11 +33,19 @@
                   <% else %>
                     <div class="btn-group">
                       <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span id="pmrefreshable">
+                        <% if !@current_user.pms.empty? and !@current_user.pms.last.read and @current_user.id == @current_user.pms.last.user_id %>
+                          <i class="icon-envelope icon-white"></i>
+                        <% end %></span>
                         <%= "Welcome, #{current_user.username}" %>
                         <span class="caret"></span>
                       </a>
                       <ul class="dropdown-menu">
-                        <li><a tabindex="-1" href="#">Private messages</a></li>
+                        <li>
+                          <a tabindex="-1" href="/pms">
+                            Private messages
+                          </a>
+                        </li>
                         <li><a tabindex="-1" href="/profiles/<%= current_user.id %>">View profile</a></li>
                         <li><a tabindex="-1" href="/profiles/<%= current_user.id %>/edit">Edit profile</a></li>
                         <li><a tabindex="-1" href="/users/edit">Account settings</a></li>

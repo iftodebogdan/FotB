@@ -1,0 +1,35 @@
+<ul class="nav nav-tabs">
+  <li>
+    <a href="/pms?view=inbox">Inbox</a>
+  </li>
+  <li>
+    <a href="/pms?view=outbox">Outbox</a>
+  </li>
+  <li class="active">
+    <a href="/pms/new">Compose</a>
+  </li>
+</ul>
+
+<% if params[:id] and User.find(:all, :conditions => ["users.username = \"#{params[:id]}\""]).count != 1 %>
+  <% flash[:alert] = "User does not exist." %>
+  <script type="text/javascript">
+    window.location = '/pms/new'
+  </script>
+<% else %>
+  <% if params[:id] and User.find(:all, :conditions => ["users.username = \"#{params[:id]}\""]).first.id == current_user.id %>
+    <% flash[:alert] = "You cannot PM yourself." %>
+    <script type="text/javascript">
+      window.location = '/pms/new'
+    </script>
+  <% end %>
+<% end %>
+
+<% if !params[:id] or User.find(:all, :conditions => ["users.username = \"#{params[:id]}\""]).count != 1%>
+  <%= form_tag("/pms/new", :method => "get") do %>
+    <%= label_tag(:id, "User name:") %>
+    <%= text_field_tag(:id) %><br/>
+    <%= submit_tag("Search") %>
+  <% end %>
+<% else %>
+  <%= render 'form' %>
+<% end %>

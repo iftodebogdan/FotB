@@ -1,5 +1,7 @@
 Forum::Application.routes.draw do
 
+  resources :pms
+
   resources :profiles
 
   resources :posts

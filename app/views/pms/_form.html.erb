@@ -1,0 +1,30 @@
+<%= form_for(@pm) do |f| %>
+  <% if @pm.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pm.errors.count, "error") %> prohibited this pm from being saved:</h2>
+
+      <ul>
+      <% @pm.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.hidden_field :user_id, :value => User.find(:all, :conditions => ["users.username = \"#{params[:id]}\""]).first.id %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :sender_id, :value => current_user.id %>
+  </div>
+  <div class="field">
+    <%= f.label :message %><br />
+    <textarea rows="8" cols="100" style="width:auto" id="pm_message" name="pm[message]" type="text" autofocus="true"></textarea> 
+  </div>
+  <div class="field">
+    <%= f.hidden_field :read, :value => false %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Send PM" %>
+  </div>
+<% end %>

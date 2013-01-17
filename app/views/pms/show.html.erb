@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @pm.user_id %>
+</p>
+
+<p>
+  <b>Sender:</b>
+  <%= @pm.sender_id %>
+</p>
+
+<p>
+  <b>Message:</b>
+  <%= @pm.message %>
+</p>
+
+<p>
+  <b>Read:</b>
+  <%= @pm.read %>
+</p>
+
+
+<%= link_to 'Edit', edit_pm_path(@pm) %> |
+<%= link_to 'Back', pms_path %>

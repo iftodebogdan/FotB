@@ -1,0 +1,60 @@
+<% if params[:view] != "inbox" and params[:view] != "outbox"%>
+  <script type="text/javascript">
+    window.location = '/pms?view=inbox'
+  </script>
+<% else %>
+  <ul class="nav nav-tabs">
+    <% if params[:view] == "inbox" %>
+      <li class="active">
+    <% else %>
+      <li>
+    <% end %>
+     <a href="/pms?view=inbox">Inbox</a>
+    </li>
+    <% if params[:view] == "outbox" %>
+      <li class="active">
+    <% else %>
+      <li>
+    <% end %>
+      <a href="/pms?view=outbox">Outbox</a>
+    </li>
+    <li>
+      <a href="/pms/new">Compose</a>
+    </li>
+  </ul>
+  
+  <table class="table table-bordered">
+    <tr>
+      <th>
+        <% if params[:view] == "inbox" %>
+          From
+        <% else %>
+          To
+        <% end %>
+      </th>
+      <th>Message</th>
+      <th>Date</th>
+    </tr>
+  
+  <% @pms.reverse_each do |pm| %>
+    <% if pm.read or pm.user_id != current_user.id or params[:view] == "outbox" %>
+      <tr>
+    <% else %>
+      <tr class="info">
+      <% pm.update_attribute :read, true %>
+    <% end %>
+      <% next if params[:view] == "inbox" and pm.user_id != current_user.id %>
+      <% next if params[:view] == "outbox" and pm.sender_id != current_user.id %>
+        <td style="width: 1px; white-space: nowrap;">
+          <% if params[:view] == "inbox" %>
+            <%= User.find(pm.sender_id).username %>
+          <% else %>
+            <%= User.find(pm.user_id).username %>
+          <% end %>
+        </td>
+        <td><%= pm.message %></td>
+        <td style="width: 1px; white-space: nowrap;"><%= l pm.created_at.localtime %></td>
+      </tr>
+  <% end %>
+  </table>
+<% end %>

@@ -1,4 +1,11 @@
 class ProfilesController < ApplicationController
+
+  before_filter do
+    if !user_signed_in?
+      redirect_to "/page/home"
+    end
+  end
+
   # GET /profiles
   # GET /profiles.json
   def index
