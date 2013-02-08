@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   after_create :create_profile
   before_destroy :delete_all_pms
 
+  validates :username, :uniqueness => true
+
    
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup

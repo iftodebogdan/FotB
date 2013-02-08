@@ -43,7 +43,7 @@
                       <ul class="dropdown-menu">
                         <li>
                           <a tabindex="-1" href="/pms">
-                            Private messages
+                            Private messages (<%= @current_user.pms.where('read = ?', false).count %>)
                           </a>
                         </li>
                         <li><a tabindex="-1" href="/profiles/<%= current_user.id %>">View profile</a></li>
@@ -61,7 +61,7 @@
     </header>
     <div class="container">
       <ul class="nav nav-pills" style="font-size:150%">
-        <% if !yield(:band_path).empty? or params[:controller] == "bands" %>
+        <% if !yield(:band_path).empty? %>
           <li class="disabled"><a>></a></li>
           <li>
             <a href=<%= yield(:band_path) %>>

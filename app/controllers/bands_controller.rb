@@ -54,7 +54,7 @@ class BandsController < ApplicationController
         format.html { redirect_to @band, :notice => 'Band was successfully created.' }
         format.json { render :json => @band, :status => :created, :location => @band }
       else
-        format.html { render :action => "new" }
+        format.html { redirect_to "/bands/new", :notice => @band.errors.full_messages }
         format.json { render :json => @band.errors, :status => :unprocessable_entity }
       end
     end
@@ -70,7 +70,7 @@ class BandsController < ApplicationController
         format.html { redirect_to bands_url, :notice => 'Band was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render :action => "edit" }
+        format.html { redirect_to "/bands/#{@band.id}/edit", :notice => @band.errors.full_messages }
         format.json { render :json => @band.errors, :status => :unprocessable_entity }
       end
     end

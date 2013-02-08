@@ -5,4 +5,7 @@ class Album < ActiveRecord::Base
   has_many :posts, :through => :topics, :dependent => :destroy
 
   belongs_to :band
+
+  validates_length_of :album_name, :maximum => 32, :allow_blank => false
+  validates :album_name, :uniqueness => true
 end

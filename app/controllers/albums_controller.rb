@@ -54,7 +54,7 @@ class AlbumsController < ApplicationController
         format.html { redirect_to @album, :notice => 'Album was successfully created.' }
         format.json { render :json => @album, :status => :created, :location => @album }
       else
-        format.html { render :action => "new" }
+        format.html { redirect_to "/albums/new?band_id=#{@album.band_id}", :notice => @album.errors.full_messages }
         format.json { render :json => @album.errors, :status => :unprocessable_entity }
       end
     end
@@ -67,10 +67,10 @@ class AlbumsController < ApplicationController
 
     respond_to do |format|
       if @album.update_attributes(params[:album])
-        format.html { redirect_to "/bands/#{@album.band.id}", :notice => 'Album was successfully updated.' }
+        format.html { redirect_to "/bands/#{@album.band_id}", :notice => 'Album was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render :action => "edit" }
+        format.html { redirect_to "/albums/#{@album.id}/edit?band_id=#{@album.band_id}", :notice => @album.errors.full_messages }
         format.json { render :json => @album.errors, :status => :unprocessable_entity }
       end
     end
@@ -83,7 +83,7 @@ class AlbumsController < ApplicationController
     @album.destroy
 
     respond_to do |format|
-      format.html { redirect_to "/bands/#{@album.band.id}" }
+      format.html { redirect_to "/bands/#{@album.band_id}" }
       format.json { head :no_content }
     end
   end

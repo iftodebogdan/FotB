@@ -5,4 +5,6 @@ class Post < ActiveRecord::Base
   belongs_to :topic
   belongs_to :album
   belongs_to :band
+
+  validates_length_of :post_content, :maximum => 256, :allow_blank => false
 end
