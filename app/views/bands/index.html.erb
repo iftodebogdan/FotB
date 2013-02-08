@@ -15,7 +15,7 @@
     <td><%= band.albums.count %></td>
     <td><%= band.topics.count %></td>
     <td><%= band.posts.count %></td>
-    <td><%= link_to 'Edit', edit_band_path(band), :class => "btn btn-mini" %>&nbsp;<%= link_to 'Delete', band, :class => "btn btn-mini", :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+    <td><% if current_user.admin? %><%= link_to 'Edit', edit_band_path(band), :class => "btn btn-mini" %>&nbsp;<%= link_to 'Delete', band, :class => "btn btn-mini", :method => :delete, :data => { :confirm => 'Are you sure?' } %><% end %></td>
   </tr>
 <% end %>
 </tbody>  

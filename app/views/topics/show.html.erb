@@ -9,7 +9,7 @@
 <tbody>
 <% @topic.posts.each do |post| %>
   <tr>
-    <td bgcolor="lightgray" rowspan="2" style="width: 1px; white-space: nowrap;"><h5><%= link_to post.user.username, "/profiles/#{post.user.id}" %></h5><br/><h6>Registered: <%= l post.user.created_at.localtime.to_date %><br/>Posts: <%= post.user.posts.count %></h6><br/><%= link_to "Send PM", "/pms/new?id=#{post.user.username}", :class => "btn btn-mini", :target => "_blank" %></td>
+    <td bgcolor="lightgray" rowspan="2" style="width: 1px; white-space: nowrap;"><h5><%= link_to post.user.username, "/profiles/#{post.user.id}" %></h5><% if post.user.admin? %>Administrator</br><% end %><br/><h6>Registered: <%= l post.user.created_at.localtime.to_date %><br/>Posts: <%= post.user.posts.count %></h6><br/><% if current_user.id != post.user_id %><%= link_to "Send PM", "/pms/new?id=#{post.user.username}", :class => "btn btn-mini", :target => "_blank" %><% end %></td>
     <td bgcolor="lightblue" colspan="2"><%= l post.created_at.localtime %></td>
   <tr>
     <td style="height: 100px; white-space: nowrap;"><%= simple_format h post.post_content %>
@@ -20,7 +20,7 @@
       </div>
     <% end %>
     </td>
-    <td bgcolor="lightgray" style="width: 1px; white-space: nowrap;"><%= link_to 'Edit', "#{edit_post_path(post)}?band_id=#{@topic.band.id}&album_id=#{@topic.album.id}&topic_id=#{@topic.id}", :class => "btn btn-mini" %>&nbsp;<%= link_to 'Delete', post, :class => "btn btn-mini", :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+    <td bgcolor="lightgray" style="width: 1px; white-space: nowrap;"><% if current_user.admin? or current_user.id == post.user_id %><%= link_to 'Edit', "#{edit_post_path(post)}?band_id=#{@topic.band.id}&album_id=#{@topic.album.id}&topic_id=#{@topic.id}", :class => "btn btn-mini" %>&nbsp;<%= link_to 'Delete', post, :class => "btn btn-mini", :method => :delete, :data => { :confirm => 'Are you sure?' } %><% end %></td>
   </tr>
 <% end %>
 </tbody>  

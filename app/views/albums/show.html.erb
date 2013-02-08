@@ -16,7 +16,7 @@
   <tr>
     <td><%= link_to topic.topic_name, "/topics/#{topic.id}" %></td>
     <td><%= topic.posts.count %></td>
-    <td><%= link_to 'Edit', "#{edit_topic_path(topic)}?band_id=#{@album.band.id}&album_id=#{@album.id}", :class => "btn btn-mini" %>&nbsp;<%= link_to 'Delete', topic, :class => "btn btn-mini", :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+    <td><% if current_user.admin? %><%= link_to 'Edit', "#{edit_topic_path(topic)}?band_id=#{@album.band.id}&album_id=#{@album.id}", :class => "btn btn-mini" %>&nbsp;<%= link_to 'Delete', topic, :class => "btn btn-mini", :method => :delete, :data => { :confirm => 'Are you sure?' } %><% end %></td>
   </tr>
 <% end %>
 </tbody>  
