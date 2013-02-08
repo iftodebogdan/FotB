@@ -6,6 +6,6 @@ class Topic < ActiveRecord::Base
   belongs_to :album
   belongs_to :band
 
-  validates_length_of :topic_name, :maximum => 32, :allow_blank => false
+  validates_length_of :topic_name, :minimum => 1, :maximum => 32, :allow_blank => false
   validates :topic_name, :uniqueness => true
 end

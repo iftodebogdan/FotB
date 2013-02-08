@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   before_destroy :delete_all_pms
 
   validates :username, :uniqueness => true
+  validates_length_of :username, :minimum => 4, :maximum => 32, :allow_blank => false
 
    
   def self.find_first_by_auth_conditions(warden_conditions)

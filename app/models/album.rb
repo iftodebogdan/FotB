@@ -6,6 +6,6 @@ class Album < ActiveRecord::Base
 
   belongs_to :band
 
-  validates_length_of :album_name, :maximum => 32, :allow_blank => false
+  validates_length_of :album_name, :minimum => 1, :maximum => 32, :allow_blank => false
   validates :album_name, :uniqueness => true
 end

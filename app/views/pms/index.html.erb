@@ -47,12 +47,12 @@
       <% next if params[:view] == "outbox" and pm.sender_id != current_user.id %>
         <td style="width: 1px; white-space: nowrap;">
           <% if params[:view] == "inbox" %>
-            <%= User.find(pm.sender_id).username %>
+            <%= User.find(pm.sender_id).username %><br/><%= link_to "Reply", "/pms/new?id=#{User.find(pm.sender_id).username}", :class => "btn btn-mini" %>
           <% else %>
             <%= User.find(pm.user_id).username %>
           <% end %>
         </td>
-        <td><%= pm.message %></td>
+        <td style="word-wrap:break-word"><%= pm.message %></td>
         <td style="width: 1px; white-space: nowrap;"><%= l pm.created_at.localtime %></td>
       </tr>
   <% end %>
