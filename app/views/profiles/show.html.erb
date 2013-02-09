@@ -1,6 +1,6 @@
 <table class="table table-bordered">
   <tr>
-    <td bgcolor="lightgray" style="width: 200px; white-space: nowrap;"><h5><%= @profile.user.username %></h5></td>
+    <td bgcolor="lightgray" style="width: 200px; white-space: nowrap;"><h5><%= @profile.user.username %></h5><% if @profile.user.admin? %>Administrator</br><% end %><% if current_user.id != @profile.user_id %><br/><%= link_to "Send PM", "/pms/new?id=#{@profile.user.username}", :class => "btn btn-mini", :target => "_blank" %><% end %></td>
     <td>
       <% if !@profile.nil? %>
         Real name: <%= @profile.name %><br/>
