@@ -21,7 +21,7 @@
 <% end %>
 </tbody>  
 </table>
-<%= link_to "New album", {:controller => "albums", :action => "new", :band_id => @band.id }, :class => "btn btn-mini" %>
+<% if current_user.admin? %><%= link_to "New album", {:controller => "albums", :action => "new", :band_id => @band.id }, :class => "btn btn-mini" %><% end %>
 <%= link_to "Back", '/bands/', :class => "btn btn-mini" %>
 
 <% if false %>

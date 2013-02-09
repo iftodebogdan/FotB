@@ -20,7 +20,7 @@
 <% end %>
 </tbody>  
 </table>
-<%= link_to "New band", '/bands/new', :class => "btn btn-mini" %>
+<% if current_user.admin? %><%= link_to "New band", '/bands/new', :class => "btn btn-mini" %><% end %>
 
 <% if false %>
 <br/><br/><br/><br/><br/>
