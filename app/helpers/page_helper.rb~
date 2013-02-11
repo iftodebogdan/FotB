@@ -1,3 +1,0 @@
-module PageHelper
-before_filter :authenticate_member!
-end

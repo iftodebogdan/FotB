@@ -1,8 +1,0 @@
-class Band < ActiveRecord::Base
-  before_filter :authenticate_user!
-  attr_accessible :band_name
-
-  has_many :albums, :dependent => :destroy
-  has_many :topics, :through => :albums, :dependent => :destroy
-  has_many :posts, :through => :topics, :dependent => :destroy
-end
